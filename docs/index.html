@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Interactive Tutorial</title>
+  <link rel="stylesheet" href="demo.css">
+</head>
+
+<body>
+  <div id="runner"><img src="./media/pikachu.gif" alt=""></div>
+  <div class="container-fluid">
+    <header class="row">
+      <h1 id="page-title">Interactive Website Tutorial</h1>
+    </header>
+  </div>
+  <div class="container">
+    <section class="row">
+      <div class="col-xs-12">
+        <p>I recently stumbled upon the necessity to make an interactive tutorial for a website and decided to write my own
+          instead.</p>
+        <p>This is
+          <strong>not at all intended for actual use</strong>, mainly because of the limitations on browser compatibility. It is
+          just an exercise and the code I wrote is surely not perfect, but if you want to make it better, go ahead!</p>
+      </div>
+    </section>
+    <section id="compatibility" class="row">
+      <div class="col-xs-12">
+        <h2>Compatibility</h2>
+      </div>
+      <div class="col-xs-12">
+        <p>The main issue with compatibility is the CSS property
+          <code>clip-path</code>, which is currently (june 2018) fully supported in Firefox only. Chrome and Safari support it with the
+          <code>-webkit-</code> prefix.</p>
+        <p>Here is the compatibility situation as of june 2018 (source:
+          <a href="https://caniuse.com/#search=clip-path">caniuse.com</a> ): </p>
+        <img src="./media/compatibility.jpg" alt="">
+      </div>
+    </section>
+    <section class="row">
+      <div class="col-xs-12">
+        <h2>Options</h2>
+      </div>
+      <div class="col-xs-12">
+        <p>Most of the options are not mandatory, but you must pass an Object with the <code>tutorialElements</code> property (more on that below).</p>
+      </div>
+      <div class="col-xs-12">
+        <code class="m-t-20 code-block">
+          {
+            tutorialElements: Array,
+            confirmBtn: bool, (default: false)
+            preventDefault: bool, (default: false)
+            theme: string (theme name), (default:'it_theme__green')
+            tutorialEndCallback: function
+          }
+        </code>
+      </div>
+    </section>
+    <section class="row">
+      <div class="col-xs-12">
+        <h3>tutorialElements (Array)</h3>
+      </div>
+      <div class="col-xs-5">
+        <p>The only mandatory properties here are <code>id</code> and <code>ttipText</code>.</p>
+        <p>
+          <a class="link__green" href="#tutorialElements-properties">&rarr; More on tutorialElements</a>
+        </p>
+      </div>
+      <div class="col-xs-7">
+        <code class="code-block">
+          tutorialElements: [
+            {
+              id: string, //The element ID, without the css selector #
+              ttipText: string, //The text that will be shown in the tooltip
+              interactive: bool, //default 'true'
+              confirmBtnText: string //default: 'OK'
+            }
+          ];
+        </code>
+      </div>
+    </section>
+    <section class="row">
+      <div class="col-xs-12">
+        <h3>confirmBtn (Boolean) - Optional</h3>
+      </div>
+      <div class="col-xs-5">
+        <p>Default value:
+          <code>false</code>.</p>
+        <p>If the element is interactive, clicking on it will mode the tutorial forward one step. If you would also like the
+          tooltip to be interactive (with an 'OK' button), you can manually set it to true.</p>
+      </div>
+      <div class="col-xs-7 readme-tooltip-container">
+        <div id="ttip-topLeft" class="it_ttip readme-tooltip it_theme__green" style="visibility: visible;">
+          <p>Tooltip text</p>
+          <a class="it_ttip_link">OK</a>
+        </div>
+      </div>
+    </section>
+    <section class="row">
+      <div class="col-xs-12">
+        <h3>preventDefault (Boolean) - Optional</h3>
+      </div>
+      <div class="col-xs-12">
+        <p>Default value:
+          <code>false</code>.</p>
+        <p>The default behaviour for the 'click' event on the element can be inhibited by setting
+          <code>preventDefault: false</code>. All of the 'click' event listeners of the current element will be re-added in the next step of the tutorial.
+        </p>
+      </div>
+    </section>
+    <section class="row">
+      <div class="col-xs-12">
+        <h3>theme (String) - Optional</h3>
+      </div>
+      <div class="col-xs-5">
+        <p>Default value:
+          <code>'it_theme__dark'</code>.</p>
+      </div>
+      <div class="col-xs-7 readme-tooltip-container">
+        <div id="ttip-topLeft" class="it_ttip readme-tooltip it_theme__dark" style="visibility: visible;">
+          <p>Dark theme (Default)</p>
+          <a class="it_ttip_link">OK</a>
+        </div>
+        <div id="ttip-topLeft" class="it_ttip readme-tooltip it_theme__light" style="visibility: visible;">
+          <p>Light theme</p>
+          <a class="it_ttip_link">OK</a>
+        </div>
+        <div id="ttip-topLeft" class="it_ttip readme-tooltip it_theme__green" style="visibility: visible;">
+          <p>Green theme</p>
+          <a class="it_ttip_link">OK</a>
+        </div>
+      </div>
+    </section>
+    <section class="row">
+      <div class="col-xs-12">
+        <h3>tutorialEndCallback (Function) - Optional</h3>
+      </div>
+      <div class="col-xs-5">
+        <p>An optional callback function can be provided. It will be executed at the end of the tutorial.</p>
+      </div>
+      <div class="col-xs-7">
+        <code class="code-block">
+            {
+              tutorialEndCallback: function(){
+                console.log('Tutorial has ended!');
+              }
+              ...
+            }
+          </code>
+      </div>
+    </section>
+    <section class="row" id="tutorialElements-properties">
+      <div class="col-xs-12">
+        <h3>tutorialElements properties</h3>
+      </div>
+      <div class="col-xs-12">
+        <table id="tutorialElements-table">
+          <thead>
+            <tr>
+              <th>Property Name</th>
+              <th>Type</th>
+              <th>Default Value</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <code>id</code>
+              </td>
+              <td>String</td>
+              <td>-</td>
+              <td>It should be the element id. The css selector # is
+                <strong>not</strong> needed.</td>
+            </tr>
+            <tr>
+              <td>
+                <code>ttipText</code>
+              </td>
+              <td>String</td>
+              <td>-</td>
+              <td>The text content of the tooltip for the element with id
+                <code>id</code>.</td>
+            </tr>
+            <tr>
+              <td>
+                <code>interactive</code>
+              </td>
+              <td>Boolean</td>
+              <td>false</td>
+              <td>If the element hasn't got a 'click' event listener,
+                <code>interactive</code> should be manually set to
+                <code>true</code>. The tooltip for that element will be generated with a confirmation button.</td>
+            </tr>
+            <tr>
+              <td>
+                <code>confirmBtnText</code>
+              </td>
+              <td>String</td>
+              <td>OK</td>
+              <td>The text for the confirmation button in the tooltip.</td>
+            </tr>
+            <tr>
+              <td>
+                <code>cb</code>
+              </td>
+              <td>Function</td>
+              <td>-</td>
+              <td>A callback function to be called right after the current step.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+    <section class="row">
+      <div class="col-xs-12 text-center">
+        <p>Wanna try it? Click the button below!</p>
+      </div>
+      <div id="tutorial-demo" class="col-xs-12 m-t-20">
+        <div class="col-xs-12 text-center">
+          <a id="startDemoBtn" href="#">Demo</a>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script src="interactiveTutorial.js"></script>
+  <script src="demo.js"></script>
+</body>
+
+</html>

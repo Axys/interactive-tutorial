@@ -1,0 +1,37 @@
+$overlayBgColor: rgba(0, 0, 0, 0.45);
+// Theme variables
+$darktheme_ttipBgColor: #333;
+$darktheme_ttipTextColor: #fff;
+$lighttheme_ttipBgColor: #fff;
+$lighttheme_ttipTextColor: #333;
+$redtheme_ttipBgColor: #c00;
+$redtheme_ttipTextColor: #fff;
+$greentheme_ttipBgColor: #28AFB0;
+$greentheme_ttipTextColor: #fff;
+$darktheme_ttipBoxShadowColor: lighten($darktheme_ttipBgColor, 20%);
+$lighttheme_ttipBoxShadowColor: darken($lighttheme_ttipBgColor, 30%);
+$redtheme_ttipBoxShadowColor: darken($redtheme_ttipBgColor, 20%);
+$greentheme_ttipBoxShadowColor: darken($greentheme_ttipBgColor, 20%);
+
+$themes: ( 
+    it_theme__dark: ( 
+      ttipBgColor: $darktheme_ttipBgColor, 
+      ttipTextColor: $darktheme_ttipTextColor,
+      ttipBoxShadowColor: $darktheme_ttipBoxShadowColor
+    ), 
+    it_theme__light: ( 
+      ttipBgColor: $lighttheme_ttipBgColor, 
+      ttipTextColor: $lighttheme_ttipTextColor,
+      ttipBoxShadowColor: $lighttheme_ttipBoxShadowColor
+    ),
+    it_theme__red: ( 
+      ttipBgColor: $redtheme_ttipBgColor, 
+      ttipTextColor: $redtheme_ttipTextColor,
+      ttipBoxShadowColor: $redtheme_ttipBoxShadowColor
+    ),
+    it_theme__green: (
+        ttipBgColor: $greentheme_ttipBgColor,
+        ttipTextColor: $greentheme_ttipTextColor,
+        ttipBoxShadowColor: $greentheme_ttipBoxShadowColor
+    )
+) !default;

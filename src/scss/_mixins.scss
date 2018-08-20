@@ -1,0 +1,32 @@
+@import "vars";
+
+@mixin theme($name, $ttipBgColor, $ttipTextColor, $ttipBoxShadowColor) {
+    &.#{$name} {
+      .it_ttip{
+        
+      background-color: $ttipBgColor;
+      box-shadow: 2px 2px 3px $ttipBoxShadowColor;
+      @if $name != 'it_theme__dark'{
+        border:1px solid lighten($ttipBoxShadowColor, 23%);
+      }
+      &, &>a {
+          color: $ttipTextColor !important;
+      }
+      & a{
+        cursor:pointer;
+          &:hover {
+              color: darken($ttipTextColor, 15%) !important;
+          }
+      }
+      }
+    }
+}
+
+@function color($colorSchema, $key) {
+    @if map-has-key($colorSchema, $key) {
+      @return map-get($colorSchema, $key);
+    }
+  
+    @warn "Unknown `#{$key}` in $colorSchema.";
+    @return null;
+}

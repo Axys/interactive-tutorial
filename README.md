@@ -8,7 +8,11 @@ The main issue with compatibility is the CSS property `clip-path`, which is curr
 
 [Here](https://caniuse.com/#search=clip-path)  is the compatibility situation as of june 2018.
 
-## Parameters
+![](http://oi66.tinypic.com/14alrpg.jpg)
+
+## Options
+Most of the options are not mandatory, but you must pass an Object with the `tutorialElements` property (more on that below).
+
 ```javascript
  {
  	tutorialElements: Array,
@@ -20,6 +24,7 @@ The main issue with compatibility is the CSS property `clip-path`, which is curr
 ```
 
 ### tutorialElements (Array)
+The only mandatory properties here are `id` and `ttipText`.
 
 ```javascript
 	tutorialElements: [
@@ -34,11 +39,11 @@ The main issue with compatibility is the CSS property `clip-path`, which is curr
 #### tutorialElements properties
 | Property Name  | Type      |  Default value | Description |
 | -------------  | --------- | -------------- | ------------|
-| `id`             | String    | -			  |It should be the element id. The css selector # is **not** needed.
-| `ttipText`       | String    | -			  |The text content of the tooltip for the element with id `id`.
+| `id`             | String    | -			  | It should be the element id. The css selector # is **not** needed.
+| `ttipText`       | String    | -			  | The text content of the tooltip for the element with id `id`.
 | `interacive`     | Boolean   | false		  |	If the element hasn't got a 'click' event listener, `interactive` should be manually set to `true`. The tooltip for that element will be generated with a confirmation button.
 | `confirmBtnText` | String    | OK			  |	The text for the confirmation button in the tooltip.
-| `cb`             | Function  | - 			  |A callback function to be called right after the current step.
+| `cb`             | Function  | - 			  | A callback function to be called right after the current step. It can also be a function that returns a promise.
 
 
 

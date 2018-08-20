@@ -1,0 +1,64 @@
+#it-overlay {
+  font-family: 'Arial', sans-serif;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 999999;
+  background-color: rgba(0, 0, 0, 0.45); }
+  #it-overlay.it_theme__dark .it_ttip {
+    background-color: #333;
+    box-shadow: 2px 2px 3px #666666; }
+    #it-overlay.it_theme__dark .it_ttip, #it-overlay.it_theme__dark .it_ttip > a {
+      color: #fff !important; }
+    #it-overlay.it_theme__dark .it_ttip a {
+      cursor: pointer; }
+      #it-overlay.it_theme__dark .it_ttip a:hover {
+        color: #d9d9d9 !important; }
+  #it-overlay.it_theme__light .it_ttip {
+    background-color: #fff;
+    box-shadow: 2px 2px 3px #b3b3b3;
+    border: 1px solid #ededed; }
+    #it-overlay.it_theme__light .it_ttip, #it-overlay.it_theme__light .it_ttip > a {
+      color: #333 !important; }
+    #it-overlay.it_theme__light .it_ttip a {
+      cursor: pointer; }
+      #it-overlay.it_theme__light .it_ttip a:hover {
+        color: #0d0d0d !important; }
+  #it-overlay.it_theme__red .it_ttip {
+    background-color: #c00;
+    box-shadow: 2px 2px 3px #660000;
+    border: 1px solid #db0000; }
+    #it-overlay.it_theme__red .it_ttip, #it-overlay.it_theme__red .it_ttip > a {
+      color: #fff !important; }
+    #it-overlay.it_theme__red .it_ttip a {
+      cursor: pointer; }
+      #it-overlay.it_theme__red .it_ttip a:hover {
+        color: #d9d9d9 !important; }
+  #it-overlay.it_theme__green .it_ttip {
+    background-color: #28AFB0;
+    box-shadow: 2px 2px 3px #155c5d;
+    border: 1px solid #2bbbbc; }
+    #it-overlay.it_theme__green .it_ttip, #it-overlay.it_theme__green .it_ttip > a {
+      color: #fff !important; }
+    #it-overlay.it_theme__green .it_ttip a {
+      cursor: pointer; }
+      #it-overlay.it_theme__green .it_ttip a:hover {
+        color: #d9d9d9 !important; }
+  #it-overlay .it_ttip {
+    position: absolute;
+    padding: 10px;
+    z-index: 999999;
+    min-width: 100px; }
+    #it-overlay .it_ttip > p {
+      margin: 0; }
+    #it-overlay .it_ttip .it_ttip_link {
+      display: inline-block;
+      padding: 5px 10px;
+      font-weight: bold;
+      text-align: right;
+      width: 100%;
+      transition: color .3s ease; }
+      #it-overlay .it_ttip .it_ttip_link:hover {
+        text-decoration: none; }
+

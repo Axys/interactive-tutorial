@@ -1,0 +1,217 @@
+@import "../../node_modules/bootstrap-sass/assets/stylesheets/_bootstrap.scss";
+@import "../scss/vars";
+@import "../scss/mixins";
+
+
+
+@mixin keyframes($name) {
+    @-webkit-keyframes #{$name} {
+      @content; 
+    }
+    @-moz-keyframes #{$name} {
+      @content;
+    }
+    @-ms-keyframes #{$name} {
+      @content;
+    }
+    @keyframes #{$name} {
+      @content;
+    } 
+}
+@include keyframes(rainbowText){
+    0%{
+      color: #f00;
+    }
+    15% {
+      color: #ff7b00;
+    }
+    30% {
+      color: #fff600;
+    }
+    45% {
+      color: #26ff00;
+    }
+    60% {
+      color: #00ffd8;
+    }
+    75% {
+      color: #0004ff;
+    }
+    90%{
+      color: #ff00f6;
+    }
+}
+
+body.rainbow-text {
+    animation: rainbowText 5s 1; /* IE 10+, Fx 29+ */
+}
+
+@include keyframes(run){
+    from {
+        left: -370px;
+        right: 100%; //calc(100% + 370px);
+    }
+    to {
+        right: -370px;
+        left: 100%;//calc(100% + 370px);
+    }
+}
+  
+#runner{
+    display: none;
+    position: fixed;
+    z-index: 999999999;
+    bottom: 0;
+}
+body.show-runner{
+    #runner{
+        animation: run 3s 1 linear; /* IE 10+, Fx 29+ */
+    }
+}
+
+
+
+.centered-element{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+header {
+    height: 200px;
+    background-color: #115c5d;
+    position: relative;
+    h1 {
+        @extend .centered-element;
+        margin-top: 0;
+        color: $greentheme_ttipTextColor;
+        text-align: center;
+        font-weight: 100;
+        font-size: 4em;
+    }
+}
+
+.m-t-20 {
+    margin-top: 20px;
+}
+
+section {
+    font-size: 1.2em;
+    margin: 50px 0;
+    line-height: 1.5em;
+    h2 {
+        margin-bottom: 20px;
+    }
+    p {
+        margin-bottom: 0;
+    }
+}
+
+code {
+    color: #666;
+    background-color: #28afb036;
+    &.code-block {
+        display: block;
+        white-space: pre-wrap;
+    }
+    &.code-white {
+        color: #666666;
+        background-color: $greentheme_ttipTextColor;
+    }
+}
+
+#startDemoBtn {
+    display: inline-block;
+    padding: 5px 10px;
+    color: $greentheme_ttipTextColor;
+    background-color: $greentheme_ttipBgColor;
+    box-shadow: 2px 2px 3px #155c5d;
+    border: 1px solid #2bbbbc;
+    text-transform: uppercase;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.link__green {
+    color: $greentheme_ttipBgColor;
+}
+
+.readme-tooltip-container .readme-tooltip {
+    color: $greentheme_ttipTextColor;
+    max-width: 300px;
+    background-color: $greentheme_ttipBgColor;
+    box-shadow: 2px 2px 3px #155c5d;
+    padding: 15px;
+    display: inline-block;
+    margin-right: 20px;
+    .it_ttip_link {
+        display: inline-block;
+        padding: 5px 10px;
+        font-weight: bold;
+        text-align: right;
+        width: 100%;
+        transition: color 0.3s ease;
+        cursor: pointer;
+        color: $greentheme_ttipTextColor;
+        &:hover {
+            text-decoration: none;
+            ;
+            color: #d9d9d9;
+        }
+    }
+}
+
+#compatibility img {
+    width: 100%;
+    margin-top: 20px;
+}
+
+#tutorialElements-table{
+    tr{
+        th,td{
+            padding: 10px 15px;
+            border: 1px solid #666;
+        }
+        th{
+            text-align: left;
+            min-width: 150px;
+            background-color: $greentheme_ttipBgColor;
+            color: $greentheme_ttipTextColor;
+        }
+        &:nth-child(even){
+            background-color: rgba(40,175,176,0.14);
+        }
+    }
+}
+
+@mixin readme-theme($name, $ttipBgColor, $ttipTextColor, $ttipBoxShadowColor) {
+    &.#{$name} {
+      background-color: $ttipBgColor;
+      box-shadow: 2px 2px 3px $ttipBoxShadowColor;
+      @if $name != 'it_theme__dark'{
+        border:1px solid lighten($ttipBoxShadowColor, 23%);
+      }
+      &, &>a {
+          color: $ttipTextColor !important;
+      }
+      & a{
+        cursor:pointer;
+          &:hover {
+              color: darken($ttipTextColor, 15%) !important;
+          }
+      }
+    }
+}
+
+.readme-tooltip-container {
+    .readme-tooltip {
+        @each $theme,
+        $colorSchema in $themes {
+            $ttipBg: color($colorSchema, ttipBgColor); //map-get($colorSchema, ttipBgColor);
+            $ttipText: color($colorSchema, ttipTextColor); //map-get($colorSchema, ttipTextColor);
+            $ttipBoxShadowColor: color($colorSchema, ttipBoxShadowColor);
+            @include readme-theme($theme, $ttipBg, $ttipText, $ttipBoxShadowColor);
+        }
+    }
+}
